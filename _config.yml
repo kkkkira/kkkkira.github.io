@@ -104,7 +104,7 @@ theme: fluid
 deploy:
   type: git
   repo: git@github.com:kkkkira/kkkkira.github.io.git
-  branch: master
+  branch: project
 
 
 # Post wordcount display settings
