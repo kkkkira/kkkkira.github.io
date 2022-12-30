@@ -1,3 +1,13 @@
-:root{
-    --navbar-bg-color: #1e1f22;
+[data-user-color-scheme="light"] {
+    --navbar-bg-color: #fff;
+}
+
+[data-user-color-scheme="light"] .top-nav-collapse {
+    --navbar-text-color: #000;
+}
+
+[data-user-color-scheme="dark"] {
+    --body-bg-color: #121211;
+    --navbar-bg-color: #212121;
+    --board-bg-color: #2a2a2a;
 }
