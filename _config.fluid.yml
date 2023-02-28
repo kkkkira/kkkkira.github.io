@@ -20,6 +20,10 @@
 # Icon for browser tab
 favicon: /img/logo/6.svg
 
+# 设置浏览器光标
+cursor:
+  icon: /img/logo/1.svg
+
 # 用于苹果设备的图标
 # Icon for Apple touch
 apple_touch_icon: /img/bg/hs.jpg
