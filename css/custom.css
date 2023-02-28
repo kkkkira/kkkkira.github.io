@@ -2,6 +2,10 @@
     --navbar-bg-color: #fff;
 }
 
+[data-user-color-scheme="light"] body {
+    background-color: #fff;
+}
+
 [data-user-color-scheme="light"] .top-nav-collapse {
     --navbar-text-color: #000;
 }
