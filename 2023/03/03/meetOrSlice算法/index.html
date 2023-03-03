@@ -1,0 +1,839 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/bg/hs.jpg">
+  <link rel="icon" href="/img/logo/6.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="kkkkira">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本文重点是实现preserveAspectRatio中参数的效果，也是background-size中值为cover，contain属性效果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="meetOrSlice算法">
+<meta property="og:url" content="https://kkkkira.github.io/2023/03/03/meetOrSlice%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="kkkkira&#39;s blog">
+<meta property="og:description" content="本文重点是实现preserveAspectRatio中参数的效果，也是background-size中值为cover，contain属性效果。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c1618d33f9c79~tplv-t2oaga2asx-image.image">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c161e53a40906~tplv-t2oaga2asx-image.image">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c16219b143378~tplv-t2oaga2asx-image.image">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c162390e34466~tplv-t2oaga2asx-image.image">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c1625c3a49f49~tplv-t2oaga2asx-image.image">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c1632ee3c06e3~tplv-t2oaga2asx-image.image">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c16354a9da897~tplv-t2oaga2asx-image.image">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c16379452d7e0~tplv-t2oaga2asx-image.image">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c1639f03b62ff~tplv-t2oaga2asx-image.image">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c17e213819216~tplv-t2oaga2asx-image.image">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/29/171c18c514237275~tplv-t2oaga2asx-image.image">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c1656567c3728~tplv-t2oaga2asx-image.image">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c165994da0a5e~tplv-t2oaga2asx-image.image">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c165af0998dc9~tplv-t2oaga2asx-image.image">
+<meta property="article:published_time" content="2023-03-03T07:11:28.000Z">
+<meta property="article:modified_time" content="2023-03-03T07:27:14.777Z">
+<meta property="article:author" content="kkkkira">
+<meta property="article:tag" content="&lt;span class&#x3D;&quot;label label-primary&quot;&gt;this&lt;&#x2F;span&gt; &lt;span class&#x3D;&quot;label label-primary&quot;&gt;正则表达式&lt;&#x2F;span&gt;">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c1618d33f9c79~tplv-t2oaga2asx-image.image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>meetOrSlice算法 - kkkkira&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kkkkira.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<!-- <body style="cursor: url(/img/logo/1.svg), default;"> -->
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <i class="navbar-logo" style="background-image:url(/img/logo/3.svg)"></i>
+      <strong>kkkkkira&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/IMG_0048.jpg') no-repeat center center; background-size: cover;">
+ 
+  <div class="full-bg-img">
+
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+   
+      <div class="banner-text text-center fade-in-up">
+        <div class="banner-logo" style="background-image:url(/img/logo/3.svg)"></div>
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="meetOrSlice算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-03 15:11" pubdate>
+          2023年3月3日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">meetOrSlice算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>本文重点是实现<code>preserveAspectRatio</code>中<code>&lt;meetOrSlice&gt;</code>参数的效果，也是<code>background-size</code>中值为<code>cover</code>，<code>contain</code>属性效果。在实现之前，简单介绍一下<strong>SVG</strong>中的<code>viewport</code>, <code>viewBox</code>和<code>preserveAspectRatio</code>的关系。</p>
+<h2 id="画布"><a href="#画布" class="headerlink" title="画布"></a>画布</h2><p> 当我们创建SVG标签时，实际上是创建了一个<strong>隐形的无限延伸</strong>的画布。</p>
+<h2 id="视窗（viewport）"><a href="#视窗（viewport）" class="headerlink" title="视窗（viewport）"></a>视窗（viewport）</h2><p> 画布是无限延伸的，但是人的视野是有限的，我们需要设置一个固定的区域，然后在这个固定的区域去绘制图形，使其可见。所以我们通过给SVG设置<code>width</code>和<code>height</code>属性（或者通过css设置宽高）设置一个可见区域，这个区域就是<strong>viewport</strong>，也就是视窗。这个区域是初始坐标系。</p>
+<p> 在不做任何坐标系转换 (transform) 的情况下，我们绘制一个SVG图形，实际是绘制在画布上，但是是以<strong>viewport</strong>的坐标系为参考坐标系绘制的。可以理解为画布是绘制实体，视窗是用来确定具体绘制的位置和尺寸的。</p>
+<h2 id="viewBox"><a href="#viewBox" class="headerlink" title="viewBox"></a>viewBox</h2><p> 什么是<strong>viewBox</strong>呢？</p>
+<p> 可以理解为我们手里有一个任意尺寸的方形框，即<strong>viewBox</strong>，这个框可以在视窗的区域内任意位置游走。我们通过设置<strong>viewBox</strong>的属性值，可以指定这个框的尺寸（width, height），以及具体游走在视窗的那个位置（x, y）。</p>
+<p> 在框内的画面就是我们最终看到的画面，我们将框内的区域“裁剪”出来，然后通过缩放填充整个视窗。而具体的缩放规则就要看<strong>preserveAspectRatio</strong>属性设置的值。</p>
+<h2 id="preserveAspectRatio"><a href="#preserveAspectRatio" class="headerlink" title="preserveAspectRatio"></a>preserveAspectRatio</h2><p> 我们通过<strong>viewBox</strong>裁剪了一个区域，然后将这个区域缩放填充整个视窗。为了便于理解，我们将通过viewBox裁剪出来的区域称为<strong>content</strong>，将视窗称为<strong>box</strong>。</p>
+<p> 为了使<strong>content</strong>在缩放过程不变形，我们需要保持<strong>content</strong>的宽高比，如果<strong>content</strong>和<strong>box</strong>的宽高比相等，则<strong>content</strong>通过缩放可以刚好填满整个<strong>box</strong>。但是如果宽高比不相等，那应该如何填充？</p>
+<p> <strong>preserveAspectRatio</strong>就是为了解决这个问题而产生的。<strong>preserveAspectRatio</strong>中有两个参数<code>&lt;align&gt;</code>和<code>&lt;meetOrSlice&gt;</code>，一个值决定<strong>content</strong>按照什么规则缩放，一个值决定缩放后的<strong>content</strong>与<strong>box</strong>的对齐方式。</p>
+<p> 其中<code>&lt;meetOrSlice&gt;</code>属性值的效果和<code>background-size</code>中<code>cover</code>和<code>contain</code> 类似。</p>
+<p>关于更详细的SVG坐标系的解释，参考这两篇文章：</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3cplus.com/html5/nesting-svgs.html">理解SVG坐标系统和变换： 建立新视窗</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3cplus.com/html5/svg-coordinate-systems.html">理解SVG坐标系和变换：视窗,viewBox和preserveAspectRatio</a></p>
+<p>接下来就详细介绍一下<code>&lt;meetOrSlice&gt;</code>是如何控制填充效果的。</p>
+<h1 id="二、meetOrSlice定义"><a href="#二、meetOrSlice定义" class="headerlink" title="二、meetOrSlice定义"></a>二、meetOrSlice定义</h1><p>为了行文方便，仍然用<strong>content</strong>和<strong>box</strong>分别代指用于填充的矩形图和被填充的盒子。因为本文重点在于探索和实现<strong>preserveAspectRatio</strong>的<code>&lt;meetOrSlice&gt;</code>效果，在这里就不对<code>&lt;align&gt;</code>参数展开介绍了。</p>
+<p><code>&lt;meetOrSlice&gt;</code>参数有两个值：<code>meet</code>和<code>slice</code>，其中<code>meet</code>类似于<code>background-size</code>中的<code>contain</code>，<code>slice</code>类似于<code>background-size</code>中的<code>cover</code>。</p>
+<p>在<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/preserveAspectRatio">MDN preserveAspectRatio</a>对这两个属性值是这样描述的：</p>
+<blockquote>
+<ul>
+<li>meet (默认值)  图形将缩放到:<ul>
+<li>宽高比将会被保留</li>
+<li>整个SVG的viewbox在视图范围内是可见的</li>
+<li>尽可能的放大SVG的viewbox，同时仍然满足其他的条件。</li>
+</ul>
+</li>
+</ul>
+<p>在这种情况下，如果图形的宽高比和视图窗口不匹配，则某些视图将会超出viewbox范围（即SVG的viewbox视图将会比可视窗口小）。</p>
+<ul>
+<li>slice 图形将缩放到:<ul>
+<li>宽高比将会被保留</li>
+<li>整个视图窗口将覆盖viewbox</li>
+<li>SVG的viewbox属性将会被尽可能的缩小，但是仍然符合其他标准。</li>
+</ul>
+</li>
+</ul>
+<p>在这种情况下，如果SVG的viewbox宽高比与可视区域不匹配，则viewbox的某些区域将会延伸到视图窗口外部（即SVG的viewbox将会比可视窗口大）。</p>
+</blockquote>
+<p>简单概括就是两句话，在保持<strong>content</strong>宽高比不变的情况下：</p>
+<p><code>meet / contain </code>：缩放，使<strong>box</strong>包含(contain)完整的<strong>content</strong>，<strong>box</strong>内部可能产生空白。重点：不产生“越界”现象</p>
+<p><code>slice / cover</code>：缩放，使<strong>content</strong>覆盖(cover)<strong>box</strong>全部区域，<strong>content</strong>可能会超出<strong>box</strong>区域。重点：不产生空白区域</p>
+<h1 id="三、理解meetOrSlice的填充规则"><a href="#三、理解meetOrSlice的填充规则" class="headerlink" title="三、理解meetOrSlice的填充规则"></a>三、理解meetOrSlice的填充规则</h1><p> 在了解了这个两个属性值的含义之后，我们再来探究这两个值的具体计算规则。<strong>box</strong>和<strong>content</strong>都是矩形，我们将矩形分为三类：正方形、竖向矩形、横向矩形：</p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c1618d33f9c79~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload><br><strong>box</strong>和<strong>content</strong>分别有可能是其中的任意一类，通过排列组合可以得到9种对应关系（相等，同向，异向）：</p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c161e53a40906~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload></p>
+<p>为了更精确的对比所有尺寸得到的结果，我们分别设置三种类型的<strong>box</strong>尺寸，以及三种类型的<strong>content</strong>尺寸，如下：</p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c16219b143378~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload></p>
+<p>在<strong>SVG</strong>中，设置<code>meet</code>和<code>slice</code>，得到的结果如下（SVG缩放中会影响到矩形的边框宽度，所以同样的边框宽度因为缩放比例不同会导致最终的视觉宽度不同）：<br><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c162390e34466~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c1625c3a49f49~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload></p>
+<p>根据定义和实验结果，我们可以发现：</p>
+<ul>
+<li><p><code>meet</code>模式下，为了使 <strong>content</strong>最大程度的被完整包含在<strong>box</strong>内部，总是<strong>content</strong>的<strong>长边</strong>与<strong>box</strong>对应边对齐。</p>
+</li>
+<li><p><code>slice</code>模式下，为了使<strong>box</strong>被填满，总是<strong>content</strong>的<strong>短边</strong>与<strong>box</strong>对应边对齐。</p>
+</li>
+</ul>
+<p>但这两点并不能包含全部情况，我们看👇例子：</p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c1632ee3c06e3~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c16354a9da897~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c16379452d7e0~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c1639f03b62ff~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload></p>
+<p>从上面的4个例子中可以发现，当<strong>box</strong>和<strong>content</strong>都是同向的矩形（均为横向或者竖向）时，<code>meet</code>情况下，还需要继续判断短边的长度；而在<code>slice</code>的情况下还需要继续判断长边的长度。</p>
+<p>所以我们可以这样描述：</p>
+<ul>
+<li><p><code>meet</code>：总是比较两者的<strong>长边</strong>：</p>
+<ul>
+<li><p>长边同边（同边：都是横向或者竖向矩形）：假设都为横向矩形，根据宽高比计算在<strong>同一个宽度</strong>下两者的高度，判断哪个的高度更高（反之同理）：</p>
+<ul>
+<li>如果<code>contentHeight &gt; boxHeight</code>（此时<strong>box</strong>更“扁”）：为了使<strong>content</strong>被完整包含在<strong>box</strong>里，需要让<strong>content</strong>的高等于<strong>box</strong>的高（对齐高）</li>
+<li>如果<code>boxHeight &gt; contentHeight</code>（此时<strong>content</strong>更“扁”）：使<strong>content</strong>的宽等于<strong>box</strong>的宽（对齐宽）</li>
+</ul>
+</li>
+<li><p>长边异边（异边：一个为横向另一个为竖向）：假设<strong>content</strong>为横向，长边为宽，<strong>box</strong>为竖向，长边为高（可以理解为content更扁一点），则使<strong>content</strong>的宽等于<strong>box</strong>的宽（对齐宽），反之同理。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c17e213819216~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><code>slice</code>：总是比较两者的<strong>短边</strong>：<ul>
+<li>短边同边（同边：同上描述）：假设都为横向矩形，根据宽高比计算在<strong>同一个宽度</strong>下两者的高度，判断哪个的高度更高：<ul>
+<li>如果<code>contentHeight &gt; boxHeight</code>（此时box更“扁”） ：使<strong>content</strong>的宽等于<strong>box</strong>的宽（对齐宽）</li>
+<li>如果<code>boxHeight &gt; contentHeight</code>（此时content更“扁”）：使<strong>content</strong>的高等于<strong>box</strong>的高（对齐高）</li>
+</ul>
+</li>
+<li>短边异边（异边：同上描述）：假设<strong>content</strong>为横向，短边为高，<strong>box</strong>为竖向，短边为宽，（content更扁），使<strong>content</strong>的高等于<strong>box</strong>的高（对齐高），反之同理。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/29/171c18c514237275~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload></p>
+<p>现在，我们已经知道<code>meet</code>和<code>slice</code>的缩放规律，根据图，我们可以进一步归纳逻辑。在这里，根据矩形形状的特点，使用“扁”作为统一标准：同宽情况下，高度越小，越扁。</p>
+<p>在保持<strong>content</strong>宽高比缩放的情况下，比较<strong>content</strong>和<strong>box</strong>的“扁”度：</p>
+<ul>
+<li><p>meet</p>
+<ul>
+<li>box &gt; content  =&gt; 对齐高：<strong>content</strong>的宽高同时乘以一个值使<strong>content</strong>的高等于<strong>box</strong>高</li>
+<li>box &lt; content =&gt; 对齐宽：<strong>content</strong>的宽高同时乘以一个值使<strong>content</strong>的宽等于<strong>box</strong>宽</li>
+</ul>
+</li>
+<li><p>slice</p>
+<ul>
+<li>box &gt; content  =&gt; 对齐宽：同上</li>
+<li>box &lt; content =&gt;对齐高： 同上</li>
+</ul>
+</li>
+</ul>
+<p>伪代码可以这样描述：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">if(type == <span class="hljs-string">&#x27;meet&#x27;</span>)&#123;<br>  if(<span class="hljs-keyword">box_扁 </span>&gt; content_扁)&#123;<br>   content_高 * <span class="hljs-keyword">scale </span>= <span class="hljs-keyword">box_高;</span><br><span class="hljs-keyword"></span>   content_宽 * <span class="hljs-keyword">scale </span>= new_content_宽;<br>  &#125;else&#123;<br>	content_宽 * <span class="hljs-keyword">scale </span>= <span class="hljs-keyword">box_宽;</span><br><span class="hljs-keyword"></span>	content_高 * <span class="hljs-keyword">scale </span>= new_content_高;<br>  &#125;<br>&#125;else if(type == <span class="hljs-string">&#x27;slice&#x27;</span>)&#123;<br> if(<span class="hljs-keyword">box_扁 </span>&gt; content_扁)&#123;<br>	content_宽 * <span class="hljs-keyword">scale </span>= <span class="hljs-keyword">box_宽;</span><br><span class="hljs-keyword"></span>	content_高 * <span class="hljs-keyword">scale </span>= new_content_高;<br>  &#125;else&#123;<br>	content_高 * <span class="hljs-keyword">scale </span>= <span class="hljs-keyword">box_高;</span><br><span class="hljs-keyword"></span>   	content_宽 * <span class="hljs-keyword">scale </span>= new_content_宽;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="四、实现meetOrSlice方法"><a href="#四、实现meetOrSlice方法" class="headerlink" title="四、实现meetOrSlice方法"></a>四、实现meetOrSlice方法</h1><p>根据伪代码的描述，为了真正实现这个算法，我们需要：</p>
+<ul>
+<li><p>得到一个矩形的“<strong>扁</strong>”度</p>
+</li>
+<li><p>得到<strong>scale</strong>值</p>
+</li>
+</ul>
+<p>其实上面两点非常容易获取：</p>
+<ul>
+<li><p>如果一个矩形越扁，意味着宽高比越大，所以可以通过宽高比 <code>width / height</code> 来获取“扁”度。</p>
+</li>
+<li><p>而<strong>scale</strong>，在伪代码中其实已经能发现scale的计算方法（假设对齐宽）：</p>
+</li>
+</ul>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs abnf">contentW * scale <span class="hljs-operator">=</span> boxW<span class="hljs-comment">;</span><br><span class="hljs-attribute">scale</span> <span class="hljs-operator">=</span> boxW / contentW<span class="hljs-comment">;</span><br><br><br>所以缩放后的content宽高为：<br><span class="hljs-attribute">newContentW</span> <span class="hljs-operator">=</span> scale * contentW<span class="hljs-comment">;</span><br><span class="hljs-attribute">newContentH</span> <span class="hljs-operator">=</span> scale * contentH<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>由此，我们就可以写出<code>meet</code>和<code>slice</code>方法了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">meetOrSlice</span>(<span class="hljs-params">type, boxW, boxH, contentW, contentH</span>)&#123;<br>    <span class="hljs-keyword">let</span> boxRadio = boxW / boxH,<br>        contentRadio = contentW / contentH,<br>        scaleW = (boxW / contentW) || <span class="hljs-number">1</span>,<br>        scaleH = (boxH / contentH) || <span class="hljs-number">1</span>,<br>        scale = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span>(type == <span class="hljs-string">&#x27;meet&#x27;</span>)&#123;<br>        scale = boxRadio &gt;= contentRadio ? scaleH : scaleW;<br>    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(type == <span class="hljs-string">&#x27;slice&#x27;</span>)&#123;<br>        scale = boxRadio &gt;= contentRadio ? scaleW : scaleH;<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> &#123;<br>        <span class="hljs-attr">w</span>: scale * contentW,<br>        <span class="hljs-attr">h</span>: scale * contentH<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>最后和SVG对比一下效果，其中关于边框的两个问题： </p>
+<ul>
+<li>svg中边框宽度不一致：是因为SVG缩放中会连同边框一起缩放 </li>
+<li>svg中部分 部分边框被裁切：是因为svg内部矩形的x,y定位，是以边框的中线为标准计算的，所以当坐标点为<code>(0,0)</code>时，会有一半的边框超出svg的窗口范围，导致被截断。</li>
+</ul>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c1656567c3728~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c165994da0a5e~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload><br><img src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/4/28/171c165af0998dc9~tplv-t2oaga2asx-image.image" srcset="/img/loading.gif" lazyload></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/kkkkira/demo/blob/master/meetOrSlice/index.html">点击查看源码</a></p>
+<p>完结，撒花🎉。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://www.w3cplus.com/html5/nesting-svgs.html">理解SVG坐标系统和变换： 建立新视窗</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.w3cplus.com/html5/svg-coordinate-systems.html">理解SVG坐标系和变换：视窗,viewBox和preserveAspectRatio</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/SVG/Attribute/preserveAspectRatio">MDN preserveAspectRatio</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Web%E5%89%8D%E7%AB%AF/" class="category-chain-item">Web前端</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Web%E5%89%8D%E7%AB%AF/SVG/" class="category-chain-item">SVG</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/span-class-label-label-primary-this-span-span-class-label-label-primary-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-span/">#<span class="label label-primary">this</span> <span class="label label-primary">正则表达式</span></a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>meetOrSlice算法</div>
+      <div>https://kkkkira.github.io/2023/03/03/meetOrSlice算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>kkkkira</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年3月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/03/03/JS%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/" title="JS正则表达式入门">
+                        <span class="hidden-mobile">JS正则表达式入门</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
