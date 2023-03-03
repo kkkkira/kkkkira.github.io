@@ -1,0 +1,917 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/bg/hs.jpg">
+  <link rel="icon" href="/img/logo/6.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="kkkkira">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本文主要介绍了一下计算机字体的发展以及一些字体规范。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈计算机字体">
+<meta property="og:url" content="https://kkkkira.github.io/2023/03/03/%E6%B5%85%E8%B0%88%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%97%E4%BD%93/index.html">
+<meta property="og:site_name" content="kkkkira&#39;s blog">
+<meta property="og:description" content="本文主要介绍了一下计算机字体的发展以及一些字体规范。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b543e25616774f4395ffe52440d961eb~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/95709cb05db540918c68bc2393d1c834~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/132cb451161343ff9e499d6127457c04~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b676f63f1e254af4bddb0f271e4da1c2~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ddfb377e5b2940b8a59af7e3cc7b9a94~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5a4fb6f747ee4b78b983e68bfa026d46~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d25914fc3d464f618a3c0f74c731f876~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/92d57fb265eb49d4b34fa0b5a4b160a4~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0c8976e9e2e1404ea228b9790156f9b9~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e1133390d7ac403ab6fec921cd1752a7~tplv-k3u1fbpfcp-zoom-1.image">
+<meta property="article:published_time" content="2023-03-03T05:05:41.000Z">
+<meta property="article:modified_time" content="2023-03-03T09:48:03.147Z">
+<meta property="article:author" content="kkkkira">
+<meta property="article:tag" content="&lt;span class&#x3D;&quot;label label-primary&quot;&gt;字体渲染&lt;&#x2F;span&gt; &lt;span class&#x3D;&quot;label label-primary&quot;&gt;ttf&lt;&#x2F;span&gt; &lt;span class&#x3D;&quot;label label-primary&quot;&gt;字符编码&lt;&#x2F;span&gt;">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b543e25616774f4395ffe52440d961eb~tplv-k3u1fbpfcp-zoom-1.image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>浅谈计算机字体 - kkkkira&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kkkkira.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":100,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<!-- <body style="cursor: url(/img/logo/1.svg), default;"> -->
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <i class="navbar-logo" style="background-image:url(/img/logo/3.svg)"></i>
+      <strong>kkkkkira&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/IMG_0048.jpg') no-repeat center center; background-size: cover;">
+ 
+  <div class="full-bg-img">
+
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+   
+      <div class="banner-text text-center fade-in-up">
+        <div class="banner-logo" style="background-image:url(/img/logo/3.svg)"></div>
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="浅谈计算机字体"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-03 13:05" pubdate>
+          2023年3月3日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          57 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">浅谈计算机字体</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="计算机字体简介"><a href="#计算机字体简介" class="headerlink" title="计算机字体简介"></a>计算机字体简介</h1><h2 id="字体分类"><a href="#字体分类" class="headerlink" title="字体分类"></a>字体分类</h2><h2 id="点阵字体"><a href="#点阵字体" class="headerlink" title="点阵字体"></a>点阵字体</h2><p>点阵字体是指每一个字符都按照16×16或24×24的尺寸设置，在设定好的尺寸内，通过每个像素点的虚实来表示字符的轮廓。点阵字体也叫<strong>位图字体</strong>，其中每个字形都以一组二维像素信息表示。</p>
+<p>因为是预先设计好然后直接输出，当字符进行动态的放大缩小时，是无法清晰的显示字形轮廓，所以点阵字体只在预设好的字号下能清晰显示，有时候不同的字号甚至可能显示成完全不同的字体，例如（图片出处：<a target="_blank" rel="noopener" href="https://xuchen.wang/archives/fonts.html">对计算机字体渲染的一些研究</a>）：</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b543e25616774f4395ffe52440d961eb~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload><br><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/95709cb05db540918c68bc2393d1c834~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload></p>
+<h2 id="矢量字体"><a href="#矢量字体" class="headerlink" title="矢量字体"></a>矢量字体</h2><p>矢量字体又叫做轮廓字体(Outline Fonts)，是利用贝塞尔曲线来描述字形轮廓，当使用该字体时，计算机根据曲线进行实时计算渲染，从而保证了当字体进行任意大小缩放时，字符都能清晰显示。</p>
+<h2 id="渲染技术"><a href="#渲染技术" class="headerlink" title="渲染技术"></a>渲染技术</h2><p>无论是点阵字体还是矢量字体，在计算机中，其本质都是栅格化（Rasterization）图像。对于计算机而言，其最小操作单元就是一个个像素栅格。如何使用一定数量的像素栅格去准确描绘理想的字体形状，就是需要解决的问题。</p>
+<h2 id="黑白渲染（Black-and-white-rendering）"><a href="#黑白渲染（Black-and-white-rendering）" class="headerlink" title="黑白渲染（Black and white rendering）"></a>黑白渲染（Black and white rendering）</h2><p>黑白渲染又叫做二值渲染（bi-level rendering）。黑白渲染是最早人们使用的渲染技术，这种渲染方式只使用黑白两种颜色来表达文字的形状。目前打印机就仍在使用这种方法，由于打印机的高输出分辨率，打印的结果能很好地再现原图。但是由于屏幕的分辨率较低，在这种渲染方式下，放大字体可能就会看到一些锯齿。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/132cb451161343ff9e499d6127457c04~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload></p>
+<h2 id="灰度渲染（Grayscale-rendering）"><a href="#灰度渲染（Grayscale-rendering）" class="headerlink" title="灰度渲染（Grayscale rendering）"></a>灰度渲染（Grayscale rendering）</h2><p>灰度渲染实际上是计算机图形学中的一种<strong>反锯齿（Anti-Aliasing）</strong>技术，通过在锯齿边缘增加一些灰阶像素，从而平滑字体轮廓。它的灰度值取决于理想的字型在此像素所覆盖的面积比例。该技术的原理与照片重新采样（resampled）到一个较低分辨率时的原理是相同的，人眼在识别图像时，由于图像的边界不明显，大脑会将其与周围的像素理解为一个整体。 因此我们的眼睛和大脑在理解灰色像素所包含的信息时，会将它转换为字型的轮廓，这就让我们可以获得与原始设计极为接近的渲染效果。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b676f63f1e254af4bddb0f271e4da1c2~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload></p>
+<h2 id="亚像素渲染（Subpixel-rendering）"><a href="#亚像素渲染（Subpixel-rendering）" class="headerlink" title="亚像素渲染（Subpixel rendering）"></a>亚像素渲染（Subpixel rendering）</h2><p>亚像素渲染实际上是灰度渲染的进阶版。这种技术的出现主要得益于硬件的提升。传统CRT显示器最小控制单元是像素，是由相邻的红、绿、蓝荧光粉单元各一个为一组组成。LCD液晶显示屏也是由红、绿、蓝三个子（亚）像素构成的，它们共同决定了这一像素的颜色和亮度，但LCD能够做到单独控制每一个子像素。因为这些子像素非常小，以至于人眼无法察觉到他们是一个个独立的颜色点。与单纯的灰度渲染相比，水平方向的分辨率翻了三倍。</p>
+<p>将亚像素渲染与灰度渲染对比可以发现，视觉上来说亚像素的边缘会更平滑：</p>
+<div style="text-align: center"><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ddfb377e5b2940b8a59af7e3cc7b9a94~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload alt="20200804180415" style="zoom:50%;" /></div>
+
+
+<p>我们将这个像素细化到亚像素并转为灰度模式可以会有更直观的感受，原有的一个灰阶像素变成了三个灰阶亚像素，整个边缘进行了更加平滑的过渡：</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5a4fb6f747ee4b78b983e68bfa026d46~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload></p>
+<h1 id="字符编码"><a href="#字符编码" class="headerlink" title="字符编码"></a>字符编码</h1><p>文字，是一个可以被人类识别的图形化符号，本质是图形，在计算机我们称之为图元。但是文字是人类文明的产物，计算机并不认识。但是对于计算机而言，它只会认识由0、1组成的二进制值，所以为了让计算机识别一段文字，需要让文字与二进制值之间进行相互转化，这个过程就是编码与解码的过程。</p>
+<p>在计算机中存在着多种编码格式，包括ASCII编码、GB类的中文编码以及Unicode编码等，关于中文字符编码，可以查看<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/46216008">这篇文章</a>，本文就不做介绍，只是简单介绍一下ASCII编码和Unicode编码。</p>
+<h2 id="ASCII编码"><a href="#ASCII编码" class="headerlink" title="ASCII编码"></a>ASCII编码</h2><p>ASCII码是是上个世纪60年代美国信息交换标准代码是由美国国家标准学会(American National Standard Institute , ANSI )制定的，是一种标准的<strong>单字节</strong>字符<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BC%96%E7%A0%81">编码</a>方案，用于基于<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%87%E6%9C%AC">文本</a>的数据，对英语字符与二进制位之间的关系，做了统一规定。</p>
+<p>ASCII规定，用8位二进制（1byte，8bit）来存储字符和特殊符号，总共可以表示256个字符。（因为英文字符总共才26个，加上特殊字符，8bit绰绰有余）。</p>
+<p>早期只针对英文编码，是使用7 位二进制数（剩下的1位二进制为0）来表示所有的大写和小写字母，数字0 到9、标点符号，以及在美式英语中使用的特殊控制字符。此时7位的叫做<a target="_blank" rel="noopener" href="http://ascii.911cha.com/">标准ASCII码</a>也叫<strong>基础ASCII码</strong>。</p>
+<p>后来当它被国际标准化组织（International Organization for Standardization, ISO）定为国际标准后，仅仅128个符号编码就不够用了，因为在其他的拉丁文字字母中还可能存在注音符号，这时就无法用基础 ASCII 码表示。于是，一些欧洲国家就决定，利用字节中闲置的最高位编入新的符号。比如，法语中的é的编码为130（二进制10000010）。这样一来，这些欧洲国家使用的编码体系，可以表示最多256个符号。此时把8位二进制编码的字符码称为**<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%A9%E5%B1%95ASCII">扩展ASCII</a>码**。</p>
+<h2 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h2><p>我们知道ASCII码最多支持256位字符，用来表示其他语言是完全不够的，亚洲国家的文字中，汉字就多达10万左右。因此出现了多种编码格式，例如GB类的中文编码。当通过多种编码方案解决了多语言的字符显示问题之后，又出现了新的问题：乱码。</p>
+<p>我们都知道计算机内部只存储二进制数据，当我们进行通信时，发送者需要将文字编码成一串二进制比特流进行传输通信，而接收者需要使用同一套编码规则进行解码，才能获取到正确的信息。但是如果通信双方使用不同的编码规则，例如发送者使用单字节编码（规定每8位为一个字符码），而接收者使用双字节解码（规定每16位为一个字符码），或者接收者同样使用单字节编码，但是其对应的不是同一个字符，就会出现乱码。</p>
+<p>于是Unicode就出现了。Unicode把所有语言都统一到一套编码里，每个字符在Unicode中只有唯一的字符码。</p>
+<h2 id="Unicode标准"><a href="#Unicode标准" class="headerlink" title="Unicode标准"></a>Unicode标准</h2><p>Unicode标准定义 <strong>一个字符代表一个code，不存在二义性</strong>，例如<code>U+0041</code>总是代表<code>&#39;A&#39;</code>，而且这套标准也会随着需求不断的拓展。</p>
+<p>实质上Unicode只是一个字符集，里面是定义了所有字符和二进制code的对应关系，但是并没有真正实现字符集的编码。而UTF-8，UTF-16，UTF-32就是Unicode的不同实现。</p>
+<h2 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h2><p>UTF-8 是在互联网上使用最广的一种 Unicode 的实现方式之一。UTF-8 最大的一个特点，就是它是一种变长的编码方式，根据不同的Unicode字符，使用不同数量的字节编码。因为如果采用单字节编码方式，是不够的，而如果采用多字节编码，那么对于小序的字符来说，会在前面填充非常多的0，非常浪费空间。所以用一种可变的方式，既可以有效的利用空间，又可以包含更多数量的字符。</p>
+<blockquote>
+<p>UTF-8 的编码规则很简单，只有二条：</p>
+<p>1）对于单字节的符号，字节的第一位设为<code>0</code>，后面7位为这个符号的 Unicode 码。因此对于英语字母，UTF-8 编码和 ASCII 码是相同的。</p>
+<p>2）对于<code>n</code>字节的符号（<code>n &gt; 1</code>），第一个字节的前<code>n</code>位都设为<code>1</code>，第<code>n + 1</code>位设为<code>0</code>，后面字节的前两位一律设为<code>10</code>。剩下的没有提及的二进制位，全部为这个符号的 Unicode 码。</p>
+<p>下表总结了编码规则，字母<code>x</code>表示可用编码的位。</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">Unicode符号范围     |        UTF-8编码方式<br><span class="hljs-section">(十六进制)          |         （二进制）</span><br><span class="hljs-section">----------------------+---------------------------------------------</span><br>0000 0000-0000 007F | 0xxxxxxx<br>0000 0080-0000 07FF | 110xxxxx 10xxxxxx<br>0000 0800-0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx<br>0001 0000-0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx<br></code></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="UTF-16"><a href="#UTF-16" class="headerlink" title="UTF-16"></a>UTF-16</h2><p>Unicode编码中，最常用的字符其实是<code>0-65535</code>，因此针对这点产生了UTF-16方案。</p>
+<p>UTF-16编码以16位无符号整数为单位，将0–65535范围内的字符编码成2个字节，超过这个的用4个字节编码。UTF16编码是Unicode最直接的实现方式，通常我们在windows上新建文本文件后保存为Unicode编码，其实就是保存为UTF16编码。</p>
+<h2 id="UTF-32"><a href="#UTF-32" class="headerlink" title="UTF-32"></a>UTF-32</h2><p>UTF-32是Unicode的一种实现方式. UTF32编码使用固定的4个字节来存储。 因此,非常浪费空间,不利于网络传输,所以使用不普遍。</p>
+<h1 id="字体文件"><a href="#字体文件" class="headerlink" title="字体文件"></a>字体文件</h1><h2 id="常见的字体文件格式"><a href="#常见的字体文件格式" class="headerlink" title="常见的字体文件格式"></a>常见的字体文件格式</h2><p>我们知道，字体分为点阵字体和矢量字体。</p>
+<p>对于纯点阵字体，其常见的字体格式包括： bdf，pcf，fnt，hbf 。</p>
+<p>对于矢量字体，其常见的格式包括<strong>Type1</strong>，<strong>TrueType（ttf）</strong>和<strong>OpenType（otf / ttf）</strong>。</p>
+<p>简单介绍一下矢量字体中各个格式之间的的区别：</p>
+<ul>
+<li><p><strong>Type1</strong>：全称<strong>PostScript Type1</strong>，是1985年由Adobe公司提出的一套矢量字体标准，使用贝塞尔曲线描述字形，称为<strong>PostScript曲线</strong>。是非开放字体，使用需要收费。</p>
+</li>
+<li><p><strong>TrueType</strong>：TrueType是1991年由苹果（Apple）公司与 微软（Microsoft）公司联合提出另一套矢量字标准。虽然与Type1都是使用贝塞尔曲线描述字体轮廓，但是<strong>Type1</strong>使用三次贝塞尔曲线来描述字形，而TrueType使用的是二次贝塞尔曲线（<strong>TrueType曲线</strong>）。<strong>TrueType 曲线</strong>可接受典型的 hinting，可告知栅格化引擎在栅格化之前应该如何把轮廓扭曲，这样可精确控制字体的抗锯齿结果。</p>
+</li>
+<li><p><strong>Opentype</strong>：是1995年由微软（Microsoft）和 Adobe公司开发的另外一种字体格式 ，基于TrueType扩展，内部兼容了<strong>TrueType 曲线</strong>和 <strong>PostScript 曲线</strong>。并且真正支持 <strong>Unicode</strong>的字体，最多可以支持 65535 个码位。其后缀名可以是ttf或者otf。仅包含<strong>TrueType 曲线</strong>，其后缀名一般是<strong>ttf</strong>，包含有 <strong>PostScript 曲线</strong>的，后缀名则是<strong>otf</strong>。</p>
+</li>
+</ul>
+<p>而目前常见的用于web的字体格式，除了主流的otf 和 ttf之外，还包括了<strong>WOFF</strong> 和 <strong>SVG</strong>。</p>
+<blockquote>
+<ul>
+<li><p><strong>WOFF</strong>：WOFF (Web Open Font Format) 本质上是 metadata + 基于 SFNT 的字体（如 TTF、OTF 或其他开放字体格式）。该格式完全是为了 Web 而创建，由 Mozilla 基金会、微软和 Opera 软件公司合作推出。 WOFF 字体均经过 WOFF 的编码工具压缩，文件大小一般比 TTF 小 40%，加载速度更快，可以更好的嵌入网页中。metadata 允许在字体文件中包含许可数据，以解决版权问题。这是万维网联盟提（qing）倡（ding）的，所以毫无疑问的是字体格式的未来。<strong>目前主流的浏览器的新版本几乎都支持 WOFF。</strong></p>
+</li>
+<li><p><strong>SVG</strong>：SVG (Scalable Vector Graphics font) 字体格式使用 SVG 的字体元素定义。这些字体包含作为标准 SVG 元素和属性的字形轮廓，就像它们是 SVG 映像中的单个矢量对象一样。SVG 字体最大的缺点是缺少字体提示（font-hinting）。字体提示是渲染小字体时为了质量和清晰度额外嵌入的信息。同时，SVG 对文本（body text）支持并不是特别好。因为 SVG 的文本选择（text selection）目前在 Safari、Safari Mobile 和 Chrome 的一些版本上完全崩坏，所以你不能选择单个字符、单词或任何自定义选项，你只能选择整行或段落文本。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="TrueType-字体"><a href="#TrueType-字体" class="headerlink" title="TrueType 字体"></a>TrueType 字体</h2><p>目前最常使用的主流字体格式还是<strong>ttf</strong>。所以简单了解一下<strong>TrueType</strong> 字体文件结构。</p>
+<p><strong>TrueType</strong> 字体是一个矢量字体格式。对于矢量字体来说，要准确绘制一个字体，其文件中需要存储其图元轮廓的定义，字符代码与图元的映射等信息。所以在<strong>TrueType</strong>字体文件中，存储了多张表格，不同的表格包含了与字体相关的不同信息，下表包含了部分表格说明：</p>
+<table>
+<thead>
+<tr>
+<th>表名</th>
+<th>说明</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>head</td>
+<td>字体头</td>
+<td>字体的全局信息</td>
+</tr>
+<tr>
+<td>cmap</td>
+<td>字符代码到图元的映射</td>
+<td>把字符代码映射为图元索引</td>
+</tr>
+<tr>
+<td>glyf</td>
+<td>图元数据</td>
+<td>图元轮廓定义以及网格调整指令</td>
+</tr>
+<tr>
+<td>maxp</td>
+<td>最大需求表</td>
+<td>字体中所需内存分配情况的汇总数据</td>
+</tr>
+<tr>
+<td>mmtx</td>
+<td>水平规格</td>
+<td>图元水平规格</td>
+</tr>
+<tr>
+<td>loca</td>
+<td>位置表索引</td>
+<td>把元索引转换为图元的位置</td>
+</tr>
+<tr>
+<td>name</td>
+<td>命名表</td>
+<td>版权说明、字体名、字体族名、风格名等等</td>
+</tr>
+<tr>
+<td>hmtx</td>
+<td>水平布局</td>
+<td>字体水平布局星系：上高、下高、行间距、最大前进宽度、最小左支撑、最小右支撑</td>
+</tr>
+<tr>
+<td>kerm</td>
+<td>字距调整表</td>
+<td>字距调整对的数组</td>
+</tr>
+<tr>
+<td>post</td>
+<td>PostScript信息</td>
+<td>所有图元的PostScript  FontInfo目录项和PostScript名</td>
+</tr>
+<tr>
+<td>PCLT</td>
+<td>PCL  5数据</td>
+<td>HP  PCL  5Printer  Language  的字体信息：字体数、宽度、x高度、风格、记号集等等</td>
+</tr>
+<tr>
+<td>hhea</td>
+<td>mac下渲染数据</td>
+<td>水平布局排列字符的字体所需的信息</td>
+</tr>
+<tr>
+<td>OS/2</td>
+<td>OS/2和Windows特有的规格</td>
+<td>TrueType字体所需的规格集</td>
+</tr>
+</tbody></table>
+<p>其中对于文本的排版布局来说，有几个参数比较重要：</p>
+<ul>
+<li><p>head表中的<code>unitsPerEm</code>字段代表字形中UPM值</p>
+</li>
+<li><p>hhea表中的<code>ascent</code> 、<code>descent</code> 和<code>line gap</code> 字段常用于Mac OS下的字体渲染。</p>
+</li>
+<li><p>OS/2表中</p>
+<ul>
+<li>用于window字体渲染<ul>
+<li><code>usWinAscent</code></li>
+<li><code>usWinDescent</code></li>
+</ul>
+</li>
+<li>用于印刷<ul>
+<li><code>sTypoAscender</code></li>
+<li><code>sTypoDescender</code></li>
+<li><code>sTypoLineGap</code></li>
+<li><code>sCapHeight</code></li>
+<li><code>sxHeight</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>这些参数主要用于排版布局的计算。对于前端而言，在CSS行框计算中，这是最根本的依据。但是这些参数究竟代表了什么含义呢？在这里做一个简单的介绍。</p>
+<h2 id="em-square-UPM"><a href="#em-square-UPM" class="headerlink" title="em square (UPM)"></a>em square (UPM)</h2><p>em框，也叫做upm（units per em）。在字体设计中，一个字符图形需要设计到在一个框内，这个框我们称之为em框。em框的概念最早来自印刷。</p>
+<blockquote>
+<p>在传统的金属字模中，每个字符被放置在一个统一大小的金属块中，每个字符的高度是统一的，这样每个字模可以整齐地放进行和块中（如下）。</p>
+<p>字模的高度被称为<code>em</code>，起源于大写的字符“M”的宽度；这个字母的比例被做成了方形（因此有了“EM Square”的称呼）。</p>
+</blockquote>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d25914fc3d464f618a3c0f74c731f876~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload></p>
+<p>em size是根据字模计算出的点值。是字符占用空间的数字化定义总量，通常指代高度，表示当前字体的字符在设计时的单位量。在OpenType字体中，UPM或em大小通常是1000单位。在TrueType字体中，UPM约定是2的幂，通常是1024或2048。而我们设置字号大小，实际上是在设置em框，从而实现缩放字符的效果。</p>
+<p>下图的字体是在1000单位的em框中设计，其中这个 <code>H</code> 字符在设计时总高度为700单位，占整个框高度的 7/10，那么当给这个字符设置10px时，其实是规定了em的大小为10px，那么此时 <code>H</code> 的实际高度就是7px：<br>$$<br>7 / 10 * 10  = 7<br>$$</p>
+<div style="text-align: center;margin-top: 50px;">
+  <img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/92d57fb265eb49d4b34fa0b5a4b160a4~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload alt="20200804180415" style="zoom:50%;" /></div>
+
+
+<h2 id="font-Metrics"><a href="#font-Metrics" class="headerlink" title="font Metrics"></a>font Metrics</h2><p>简单来说，<strong>字体度量（Font Metrics）</strong>就是描述一个字体的一系列参数，用于计算机解析渲染字体。在设计一套字体时，可以对这些参数进行自定义设置从而实现自定义字体设计。这些参数包含了一个字体中各个字形的轮廓参数，字符的大小，样式设置，以及该字体中字符与字符间的排布等，可以通过<a target="_blank" rel="noopener" href="https://www.fontshop.com/glossary">glossary</a> 来了解相关的设计参数信息与含义。<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0c8976e9e2e1404ea228b9790156f9b9~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload></p>
+<p>而这一些系列的参数中，重点介绍一下与字符排布相关的参数（这些参数都是以英文字符为参考对象）：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>baseline</td>
+<td>是文字绘制时所参照的基准线，所有的文字以此为基准位置进行设计。</td>
+</tr>
+<tr>
+<td>x-height</td>
+<td>小写字母的高度，以x为例</td>
+</tr>
+<tr>
+<td>capital height</td>
+<td>基线到大写字母顶部到高度</td>
+</tr>
+<tr>
+<td>ascent</td>
+<td>小写字母中延伸到 x-height以上的部分</td>
+</tr>
+<tr>
+<td>descent</td>
+<td>小写字母中延伸到 x-height以下 的部分</td>
+</tr>
+<tr>
+<td>leading / line gap</td>
+<td>从基线到基线的文本行之间的垂直间隔</td>
+</tr>
+<tr>
+<td>midline</td>
+<td>位于小写字母的主体之上，基线和中线之间的距离是x-height</td>
+</tr>
+<tr>
+<td>spacing</td>
+<td>字间距</td>
+</tr>
+</tbody></table>
+<p>通过一张图来了解这些参数（图源网络）：</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e1133390d7ac403ab6fec921cd1752a7~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading.gif" lazyload></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://www.thetype.com/2016/09/10968/">参数化设计与字体战争：从 OpenType 1.8 说起</a></p>
+<p><a target="_blank" rel="noopener" href="https://pcedu.pconline.com.cn/teach/xt/1205/2783057_all.html">一笔一划间蕴藏的学问 浅谈计算机字体</a></p>
+<p><a target="_blank" rel="noopener" href="https://xuchen.wang/archives/fonts.html">对计算机字体渲染的一些研究</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.smashingmagazine.com/2012/04/a-closer-look-at-font-rendering/">A Closer Look At Font Rendering</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.joelonsoftware.com/2007/06/12/font-smoothing-anti-aliasing-and-sub-pixel-rendering/">Font smoothing, anti-aliasing, and sub-pixel rendering</a><br><a target="_blank" rel="noopener" href="https://www.html5rocks.com/zh/tutorials/internals/antialiasing-101/">Antialiasing 101</a></p>
+<p><a target="_blank" rel="noopener" href="http://cenalulu.github.io/linux/character-encoding/">十分钟搞清字符集和字符编码</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/">The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets</a></p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/ASCII">百度百科：ASCII</a></p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Unicode">百度百科：Unicode</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html">字符编码笔记：ASCII，Unicode 和 UTF-8</a><br><a target="_blank" rel="noopener" href="https://dailc.github.io/2017/05/17/severalCommonlyCharEncoding.html">【字符编码系列】常用的几种字符编码(GBK，UTF-8，UTF-16)</a><br><a target="_blank" rel="noopener" href="https://developer.apple.com/fonts/TrueType-Reference-Manual/">TrueType</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/28179203">Web 字体简介: TTF, OTF, WOFF, EOT &amp; SVG</a><br><a target="_blank" rel="noopener" href="http://www.shushilvshe.com/data/font-build.html">字体生成小记</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sjhrun2001/archive/2010/01/19/1651274.html">ttf文件结构解析</a></p>
+<p><a target="_blank" rel="noopener" href="https://photopea.github.io/Typr.js/">Typr.js</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%97%E4%BD%93%E6%B8%B2%E6%9F%93/" class="category-chain-item">字体渲染</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/span-class-label-label-primary-%E5%AD%97%E4%BD%93%E6%B8%B2%E6%9F%93-span-span-class-label-label-primary-ttf-span-span-class-label-label-primary-%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81-span/">#<span class="label label-primary">字体渲染</span> <span class="label label-primary">ttf</span> <span class="label label-primary">字符编码</span></a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>浅谈计算机字体</div>
+      <div>https://kkkkira.github.io/2023/03/03/浅谈计算机字体/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>kkkkira</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年3月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/03/03/JS%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/" title="JS正则表达式入门">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JS正则表达式入门</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/28/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/" title="浏览器同源策略">
+                        <span class="hidden-mobile">浏览器同源策略</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

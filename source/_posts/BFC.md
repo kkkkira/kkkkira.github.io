@@ -3,6 +3,7 @@ title: BFC
 date: 2023-02-28 22:03:56
 category: [Web前端, CSS]
 tags: <span class="label label-primary">BFC</span> <span class="label label-primary">CSS渲染</span>
+excerpt: 本文主要介绍了BFC渲染规则以及通过一些实例证明。
 ---
 # 什么是BFC？
 在了解BFC之前，先了解一下FC的定义。**FC**（Formatting Context 格式化上下文），FC指定了页面中一块独立区域的渲染规则，这个渲染规则可以理解为内部元素的布局规则。不同的FC有不同的规则定义。
